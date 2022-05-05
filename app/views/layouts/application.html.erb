@@ -6,11 +6,23 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
   </head>
 
   <body>
+    <header>
+      <h1>Ruby on Rails スケジュール管理アプリ</h1>
+    </header>
     <%= yield %>
+
+    <footer>
+      <h1>現在の日時：<%= Date.current.strftime('%Y年%m月%d日') %>
+          <%= if current_page?("http://localhost:3000/schedulers/")
+              "スケジュール合計：#{@total}"
+              end %>
+      </h1>
+    </footer>
+
   </body>
 </html>

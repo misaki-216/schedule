@@ -1,0 +1,44 @@
+<h3>スケジュール一覧</h3>
+
+<% if flash[:notice] %>
+ <p class = "notice"><%= flash[:notice] %></p>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th>タイトル</th>
+      <th>開始日</th>
+      <th>終了日</th>
+      <th>終日</th>
+      <th>スケジュール更新日時</th>
+      <th>確認</th>
+      <th>編集</th>
+      <th>削除</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @schedulers.each do |scheduler| %>
+    <tr>
+      <td><%= scheduler.id %></td>
+      <td><%= scheduler.title %></td>
+      <td><%= scheduler.start %></td>
+      <td><%= scheduler.end %></td>
+      <td><% if scheduler.allday == "1"%>◯
+          <% else scheduler.allday == "0"%>×
+          <% end %>
+      </td>
+      <td><%= scheduler.updated_at.to_s(:datetime_jp)%></td>
+      <td><%= link_to "参照", scheduler %></td>
+      <td><%= link_to "編集", [:edit, scheduler] %></td>
+      <td><%= button_to "削除", scheduler, method: :delete%>
+      </td>
+    </tr>
+
+    <% end %>
+  </tbody>
+</table>
+
+<p><%= link_to"スケジュール登録",:new_scheduler %></p>

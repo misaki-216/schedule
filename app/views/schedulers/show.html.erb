@@ -1,0 +1,39 @@
+<h3>スケジュール詳細</h3>
+
+ <table>
+  <tr>
+    <th>タイトル</th>
+    <td><%= @scheduler.title %></td>
+  </tr>
+
+  <tr>
+    <th>開始日</th>
+    <td><%= @scheduler.start %></td>
+  </tr>
+
+  <tr>
+    <th>終了日</th>
+    <td><%= @scheduler.end %></td>
+  </tr>
+
+  <tr>
+    <th>終日</th>
+    <td><% if @scheduler.allday == "1"%>◯
+        <% else @scheduler.allday == "0"%>×
+        <% end %>
+    </td>
+  </tr>
+
+  <tr>
+    <th>スケジュールメモ</th>
+    <td><%= @scheduler.memo %></td>
+  </tr>
+ </table>
+
+ <div>
+  <ul>
+    <li><%= link_to "スケジュール一覧に戻る", :schedulers %></li>
+    <li><%= link_to "スケジュールを編集する", [:edit, @scheduler] %></li>
+    <li><%= button_to "スケジュールを削除する", @scheduler, method: :delete%></li>
+  </ul>
+ </div>
